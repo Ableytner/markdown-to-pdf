@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "markdowntopdf"
+version = "0.0.1"
+authors = [
+  { name="Ableytner", email="ableytner@gmx.at" },
+]
+description = "A library to convert a markdown file to PDF using Githubs dark dimmed styling."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: Microsoft :: Windows",
+]
+
+dependencies = [
+    "pyppeteer"
+]
+
+[project.scripts]
+markdown-to-pdf = "markdownpdf.main:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pylint"
+]
+
+[project.urls]
+Repository = "https://github.com/Ableytner/markdown-to-pdf"
+"Bug Tracker" = "https://github.com/Ableytner/markdown-to-pdf/issues"
