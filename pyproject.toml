@@ -24,7 +24,7 @@ dependencies = [
 ]
 
 [project.scripts]
-markdown-to-pdf = "markdownpdf.main:main"
+markdown-to-pdf = "markdowntopdf.main:main"
 
 [project.optional-dependencies]
 dev = [
