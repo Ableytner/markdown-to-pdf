@@ -6,7 +6,7 @@ Convert a markdown file to a PDF using Github Dark Dimmed styling.
 
 Open a new command prompt window and navigate to the folder containing the markdown file to be converted. Then run the following command:
 ```bash
-python -m markdowntopdf your_markdown_file.md
+python -m markdowntopdf.main your_markdown_file.md
 ```
 
 After a few seconds, a new pdf file with the name of the original file should appear.

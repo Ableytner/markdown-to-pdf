@@ -1,7 +1,11 @@
+import os
+# set chromium version to fix download issue
+# https://github.com/pyppeteer/pyppeteer/issues/463
+os.environ["PYPPETEER_CHROMIUM_REVISION"] = "1267552"
+
 import asyncio
 import shutil
 import sys
-import os
 from pathlib import Path
 
 from markdown_it import MarkdownIt
@@ -35,9 +39,7 @@ def main():
     shutil.rmtree("node_modules")
 
 def _generate_style_css() -> None:
-    # set chromium version to fix download issue
-    # https://github.com/pyppeteer/pyppeteer/issues/463
-    res = os.system(f'set "PYPPETEER_CHROMIUM_REVISION=1267552" & github-markdown-css --theme=dark_dimmed >> {CSS_FILENAME}')
+    res = os.system(f'github-markdown-css --theme=dark_dimmed >> {CSS_FILENAME}')
     if res != 0:
         raise Exception(f"{CSS_FILENAME} could not be created")
 
