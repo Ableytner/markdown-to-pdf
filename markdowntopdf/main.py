@@ -35,7 +35,9 @@ def main():
     shutil.rmtree("node_modules")
 
 def _generate_style_css() -> None:
-    res = os.system(f"github-markdown-css --theme=dark_dimmed >> {CSS_FILENAME}")
+    # set chromium version to fix download issue
+    # https://github.com/pyppeteer/pyppeteer/issues/463
+    res = os.system(f'set "PYPPETEER_CHROMIUM_REVISION=1267552" & github-markdown-css --theme=dark_dimmed >> {CSS_FILENAME}')
     if res != 0:
         raise Exception(f"{CSS_FILENAME} could not be created")
 
