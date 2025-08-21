@@ -115,7 +115,7 @@ jobs:
         artifacts: "dist/*"
         bodyFile: "body.md"
         tag: "${{ needs.tag.outputs.release-tag }}"
-        commit: "master"
+        commit: "main"
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Publish to pypi
       uses: pypa/gh-action-pypi-publish@release/v1
