@@ -1,3 +1,7 @@
 __pycache__/
+venv/
 build/
+node_modules/
 *.egg-info/
+tmp/
+package-lock.json
