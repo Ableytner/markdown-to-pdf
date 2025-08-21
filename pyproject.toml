@@ -3,8 +3,8 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mdtopdf"
-version = "0.0.1"
+name = "markdown-2-pdf"
+version = "1.0.0rc1"
 authors = [
   { name="Ableytner", email="ableytner@gmx.at" },
 ]
@@ -35,7 +35,7 @@ dependencies = [
 ]
 
 [project.scripts]
-md-to-pdf = "mdtopdf.convert:convert"
+md-to-pdf = "markdown-2-pdf.convert:convert"
 
 [project.optional-dependencies]
 dev = [
@@ -44,5 +44,5 @@ dev = [
 ]
 
 [project.urls]
-Repository = "https://github.com/Ableytner/md-to-pdf"
-"Bug Tracker" = "https://github.com/Ableytner/md-to-pdf/issues"
+Repository = "https://github.com/Ableytner/markdown-to-pdf"
+"Bug Tracker" = "https://github.com/Ableytner/markdown-to-pdf/issues"

@@ -182,7 +182,7 @@ HTML_SUFFIX = """
 
 if __name__ == "__main__":
     if len(sys.argv) == 0:
-        raise Exception("No filename provided, example usage: python3 -m mdtopdf myfile.md")
+        raise Exception("No filename provided, example usage: python3 -m markdown-2-pdf myfile.md")
 
     filename = sys.argv[1]
 
