@@ -1,4 +1,4 @@
-"""A module which converts a markdown file to a pdf file, using Github markdown styling."""
+"""The main module for converting markdown files to PDF"""
 
 # pylint: disable=wrong-import-position
 import os
@@ -179,11 +179,3 @@ HTML_SUFFIX = """
 </body>
 </html>
 """
-
-if __name__ == "__main__":
-    if len(sys.argv) == 0:
-        raise Exception("No filename provided, example usage: python3 -m markdown-2-pdf myfile.md")
-
-    filename = sys.argv[1]
-
-    convert(filename)
