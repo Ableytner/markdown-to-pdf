@@ -2,3 +2,5 @@ markdown-it-py[plugins]
 pyppeteer
 requests
 abllib
+pylint
+pytest
