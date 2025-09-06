@@ -6,11 +6,11 @@ Convert a markdown file to PDF using Github Dark Dimmed styling.
 
 Open a new command prompt window and run the following command:
 ```bash
-md-to-pdf your_markdown_file.md
+mdtopdf your_markdown_file.md
 ```
 or
 ```bash
-python -m markdown-2-pdf.convert your_markdown_file.md
+python -m mdtopdf your_markdown_file.md
 ```
 
 After a few seconds, a new pdf file with the name of the original file should appear.
@@ -19,17 +19,7 @@ After a few seconds, a new pdf file with the name of the original file should ap
 
 ### PyPI
 
-All stable versions get released on [PyPI](https://pypi.org/project/markdown-2-pdf). To download the newest version, run the following command:
-```bash
-pip install markdown-2-pdf
-```
-This will automatically install all other dependencies.
-
-Alternatively, a specific version can be installed as follows:
-```bash
-pip install markdown-2-pdf==1.0.0
-```
-where 1.0.0 is the version you want to install.
+This project is currently not published on PyPI because all combinations of markdown-to-pdf / mdtopdf are already taken.
 
 ### Github
 
@@ -38,24 +28,23 @@ To install the latest development version directly from Github, run the followin
 pip install git+https://github.com/Ableytner/markdown-to-pdf.git
 ```
 
-Additionally, a [wheel](https://peps.python.org/pep-0427/) is added to every [stable release](https://github.com/Ableytner/markdown-to-pdf/releases), which can be manually downloaded and installed.
+Additionally, a [wheel](https://peps.python.org/pep-0427/) is added to every [stable release](https://github.com/Ableytner/markdown-to-pdf/releases), which can be manually downloaded and installed, or installed with the following command:
+```bash
+pip install git+https://github.com/Ableytner/markdown-to-pdf/releases/download/1.0.0/markdown-to-pdf-1.0.0.tar.gz
+```
+where 1.0.0 is the version you want to install.
 
 ### requirements.txt
 
 If you want to include this library as a dependency in your requirements.txt, the syntax is as follows:
 ```text
-markdown-2-pdf==1.0.0
+mdtopdf @ git+https://github.com/Ableytner/markdown-to-pdf/releases/download/1.0.0/markdown-to-pdf-1.0.0.tar.gz
 ```
 where 1.0.0 is the version that you want to install.
 
-To always use the latest stable version:
+Alternatively, to always install the latest development version:
 ```text
-markdown-2-pdf
-```
-
-To always install the latest development version:
-```text
-markdown-2-pdf @ git+https://github.com/Ableytner/markdown-to-pdf
+mdtopdf @ git+https://github.com/Ableytner/markdown-to-pdf
 ```
 
 ## Use latest Github styling

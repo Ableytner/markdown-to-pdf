@@ -86,7 +86,7 @@ def _copy_md_file(filename: str, md_file: str, tdir: str) -> None:
         shutil.copyfile(orig_img, img_file)
 
 def _generate_style_css(css_file: str) -> None:
-    logger.info("Generating newest Github markdown style sheet")
+    logger.info("Generating the newest Github markdown style sheet")
 
     res = os.system(f"github-markdown-css --theme=dark_dimmed > {css_file}")
     if res != 0:
@@ -120,7 +120,7 @@ def _generate_html(md_file: str, html_file, css_file: str) -> None:
         f.write(prefix + raw_html + suffix)
 
 async def _generate_pdf(url: str, pdf_path: str) -> None:
-    browser = await launch()
+    browser = await launch(logLevel=log.LogLevel.WARNING.value)
     page = await browser.newPage()
 
     await page.goto(url)
