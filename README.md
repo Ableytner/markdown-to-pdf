@@ -49,6 +49,13 @@ Alternatively, to always install the latest development version:
 mdtopdf @ git+https://github.com/Ableytner/markdown-to-pdf
 ```
 
+### Troubleshooting on linux
+
+If you try to run the program and it complains about missing packages, you can try the command below:
+```sh
+sudo apt-get install libatk1.0-0t64 libatk-bridge2.0-0t64 libatspi2.0-0t64 libxcomposite1 libxdamage1 libxfixes3 libxrandr2 libgbm1 libasound2t64 libcups2t64 libcairo2 libpango-1.0-0
+```
+
 ## Use latest Github styling
 
 If you want to use the latest Github markdown styling, this package also provides a way to accomplish that.
