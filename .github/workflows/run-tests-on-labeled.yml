@@ -16,7 +16,7 @@ jobs:
     secrets: inherit
 
   pytest:
-    needs: pylint
+    if: github.event.label.name == 'ready to merge'
     strategy:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
