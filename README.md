@@ -15,6 +15,8 @@ python -m mdtopdf your_markdown_file.md
 
 After a few seconds, a new pdf file with the name of the original file should appear.
 
+Any images the markdown file contained are embedded into the final pdf.
+
 ## Installation
 
 ### PyPI
