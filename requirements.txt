@@ -1,5 +1,5 @@
 markdown-it-py[plugins]
-pyppeteer
+playwright
 requests
 abllib
 pylint

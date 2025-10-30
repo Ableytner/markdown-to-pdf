@@ -1,13 +1,6 @@
 """The main module for converting markdown files to PDF"""
 
-# pylint: disable=wrong-import-position
 import os
-# set chromium version to fix download issue
-# https://github.com/pyppeteer/pyppeteer/issues/463
-os.environ["PYPPETEER_CHROMIUM_REVISION"] = "1267552"
-# pylint: enable=wrong-import-position
-
-import asyncio
 import re
 import shutil
 import sys
@@ -19,10 +12,12 @@ from abllib import fs, log
 from markdown_it import MarkdownIt
 from mdit_py_plugins.footnote import footnote_plugin
 from mdit_py_plugins.front_matter import front_matter_plugin
-from pyppeteer import launch
-from pyppeteer.page import Page
+from playwright.sync_api import Page, sync_playwright
 
 logger = log.get_logger("main")
+
+# install playwright browsers
+os.system("playwright install chromium")
 
 def convert(filename: str) -> None:
     """
@@ -52,14 +47,8 @@ def convert(filename: str) -> None:
         html_file = fs.absolute(tdir, name + ".html")
         _generate_html(md_file, html_file, css_file)
 
-        try:
-            loop = asyncio.get_running_loop()
-        except RuntimeError:
-            loop = asyncio.new_event_loop()
-            asyncio.set_event_loop(loop)
-
         pdf_file = fs.absolute(tdir, name + ".pdf")
-        loop.run_until_complete(_generate_pdf(f"file:///{html_file}", pdf_file))
+        _generate_pdf(f"file:///{html_file}", pdf_file)
 
         final_file = fs.absolute(os.path.dirname(filename), name + ".pdf")
         shutil.copyfile(pdf_file, final_file)
@@ -119,31 +108,32 @@ def _generate_html(md_file: str, html_file, css_file: str) -> None:
     with open(html_file, "w+", encoding="utf8") as f:
         f.write(prefix + raw_html + suffix)
 
-async def _generate_pdf(url: str, pdf_path: str) -> None:
-    browser = await launch(logLevel=log.LogLevel.WARNING.value)
-    page = await browser.newPage()
+def _generate_pdf(url: str, pdf_path: str) -> None:
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
 
-    await page.goto(url)
+        page.goto(url)
 
-    height = await _get_page_height(page)
-    await page.pdf({
-        "path": pdf_path,
-        "printBackground": True,
-        "height": f"{height}px",
-        "pageRanges": "1"
-    })
+        height = _get_page_height(page)
+        page.pdf(
+            path=pdf_path,
+            print_background=True,
+            height=f"{height}px",
+            page_ranges="1"
+        )
 
-    logger.info(f"Generated file {Path(pdf_path).name}")
+        logger.info(f"Generated file {Path(pdf_path).name}")
 
-    await browser.close()
+        browser.close()
 
-async def _get_page_height(page: Page) -> float:
+def _get_page_height(page: Page) -> float:
     """
     Code from here:
     https://stackoverflow.com/a/70355152/15436169
     """
 
-    return await page.evaluate('''() => {
+    return page.evaluate('''() => {
         const body = document.body
         const html = document.documentElement;
         return Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
